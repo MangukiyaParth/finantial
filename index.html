@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instant Pre-Approved Loan @ 1.5%</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <h2>Loanify</h2>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#calculator">Calculator</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>Pre-Approved Loan at <span>1.5% Monthly</span></h1>
+  <p>Instant approval • No paperwork • Transparent EMI</p>
+  <button onclick="scrollToCalc()">Check Your EMI</button>
+</section>
+
+<section class="trust">
+  <div>🔒 Secure</div>
+  <div>⚡ Instant Approval</div>
+  <div>🏦 RBI-Compliant*</div>
+  <div>📊 Transparent EMI</div>
+</section>
+
+<section id="features" class="features">
+  <h2>Why Choose Us</h2>
+  <div class="grid">
+    <div>✔ Low Monthly Interest</div>
+    <div>✔ Fixed & Reducing EMI</div>
+    <div>✔ No Hidden Charges</div>
+    <div>✔ Flexible Tenure</div>
+  </div>
+</section>
+
+<section id="how" class="how">
+  <h2>How It Works</h2>
+  <ol>
+    <li>Enter loan details</li>
+    <li>Choose EMI type</li>
+    <li>View instant approval</li>
+    <li>Check EMI schedule</li>
+  </ol>
+</section>
+
+<section id="calculator" class="calculator">
+  <h2>Loan Calculator</h2>
+
+  <form id="loanForm">
+    <input type="number" id="amount" placeholder="Loan Amount $" required>
+    <input type="number" id="tenure" placeholder="Tenure (Months)" required>
+
+    <select id="type">
+      <option value="reducing">Reducing Balance EMI</option>
+      <option value="flat">Fixed EMI</option>
+    </select>
+
+    <button type="submit">Calculate EMI</button>
+  </form>
+
+  <div id="result" class="hidden">
+    <div class="summary">
+      <div>EMI<br><span id="emi"></span></div>
+      <div>Total Interest<br><span id="interest"></span></div>
+      <div>Total Payable<br><span id="total"></span></div>
+    </div>
+
+    <div class="table-wrapper">
+        <table>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Date</th>
+                <th>EMI</th>
+                <th>Principal</th>
+                <th>Interest</th>
+                <th>Balance</th>
+            </tr>
+            </thead>
+            <tbody id="schedule"></tbody>
+        </table>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="faq">
+  <h2>Frequently Asked Questions</h2>
+  <p><b>Is 1.5% monthly?</b><br>Yes, interest is charged monthly.</p>
+  <p><b>Flat vs Reducing?</b><br>Reducing EMI saves interest.</p>
+  <p><b>Is approval guaranteed?</b><br>Subject to verification.</p>
+</section>
+
+<footer>
+  <p>© 2025 Loanify. All Rights Reserved.</p>
+  <p class="disclaimer">
+    * Loan approval subject to verification. Interest rate is monthly.
+  </p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
