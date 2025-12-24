@@ -376,3 +376,37 @@ footer a {
   font-weight: 700;
 }
 
+/* ========== POLICY PAGES ========== */
+
+.policy {
+  max-width: 900px;
+  margin: auto;
+  padding: 60px 20px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.08);
+}
+
+.policy h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #2563eb;
+}
+
+.policy h3 {
+  margin-top: 25px;
+  color: #1e40af;
+}
+
+.policy p {
+  line-height: 1.7;
+  font-size: 15px;
+  color: #374151;
+}
+
+.policy .updated {
+  margin-top: 40px;
+  font-size: 13px;
+  color: #6b7280;
+}
+

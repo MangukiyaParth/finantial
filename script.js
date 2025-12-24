@@ -56,7 +56,7 @@ document.getElementById("loanForm").addEventListener("submit", function (e) {
   const R = 0.015; // 1.5% monthly
 
   /* ---------- SHOW APPLICATION DETAILS ---------- */
-  document.getElementById("loanForm").style.display = "none";
+//   document.getElementById("loanForm").style.display = "none";
   applicationBox.classList.remove("hidden");
 
   aName.innerText = name;
@@ -117,7 +117,7 @@ document.getElementById("loanForm").addEventListener("submit", function (e) {
 
       rows += `
         <tr>
-          <td>${i}</td>
+          <td>${i}</td>l
           <td>${due.toDateString()}</td>
           <td>${money(emi)}</td>
           <td>${money(principal)}</td>
@@ -128,10 +128,10 @@ document.getElementById("loanForm").addEventListener("submit", function (e) {
   }
 
   /* ---------- DISPLAY RESULTS ---------- */
-  emiSpan.innerText = money(emi);
-  interestSpan.innerText = money(totalInterest);
-  totalSpan.innerText = money(P + totalInterest);
+//   emiSpan.innerText = money(emi);
+//   interestSpan.innerText = money(totalInterest);
+//   totalSpan.innerText = money(P + totalInterest);
 
   schedule.innerHTML = rows;
-  result.classList.remove("hidden");
+//   result.classList.remove("hidden");
 });
