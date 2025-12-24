@@ -1,16 +1,23 @@
+/* ========== GLOBAL ========== */
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: Inter, Arial, sans-serif;
   background: #f5f7fb;
   color: #1f2937;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ========== HEADER ========== */
 header {
-  background: white;
+  background: #ffffff;
   box-shadow: 0 4px 12px rgba(0,0,0,.05);
   position: sticky;
   top: 0;
@@ -30,15 +37,15 @@ header {
   color: #2563eb;
 }
 
-.nav a {
+.nav nav a {
   margin-left: 20px;
-  text-decoration: none;
-  color: #374151;
   font-weight: 500;
+  color: #374151;
 }
 
+/* ========== HERO ========== */
 .hero {
-  background: linear-gradient(135deg, #2563eb, #1e40af);
+  background: linear-gradient(135deg,#2563eb,#1e40af);
   color: white;
   padding: 90px 20px;
   text-align: center;
@@ -52,54 +59,117 @@ header {
   color: #facc15;
 }
 
+.hero p {
+  margin-top: 10px;
+  opacity: 0.95;
+}
+
 .hero button {
   margin-top: 25px;
-  padding: 15px 35px;
+  padding: 14px 35px;
   border-radius: 30px;
   border: none;
   background: #facc15;
-  font-size: 16px;
   font-weight: 600;
   cursor: pointer;
 }
 
+/* ========== HIGHLIGHTS ========== */
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+  gap: 20px;
+  max-width: 1100px;
+  margin: -40px auto 40px;
+  padding: 0 20px;
+}
+
+.highlight-card {
+  background: white;
+  padding: 25px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 15px 30px rgba(0,0,0,.08);
+}
+
+.highlight-card h3 {
+  color: #2563eb;
+}
+
+/* ========== TRUST ========== */
 .trust {
   display: grid;
   grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
   gap: 15px;
-  max-width: 1100px;
-  margin: -40px auto 40px;
+  max-width: 1000px;
+  margin: auto;
+  padding: 0 20px 40px;
 }
 
 .trust div {
   background: white;
-  padding: 18px;
+  padding: 16px;
   border-radius: 12px;
   text-align: center;
-  box-shadow: 0 10px 20px rgba(0,0,0,.08);
+  box-shadow: 0 10px 20px rgba(0,0,0,.06);
   font-weight: 600;
 }
 
+/* ========== SECTIONS ========== */
 section {
   max-width: 1100px;
   margin: auto;
   padding: 60px 20px;
 }
 
-.features .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
-  gap: 20px;
+section h2 {
+  text-align: center;
+  margin-bottom: 30px;
 }
 
-.features .grid div {
+/* ========== GRIDS ========== */
+.features .grid,
+.charges .grid,
+.security .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  gap: 15px;
+}
+
+.features .grid div,
+.charges .grid div,
+.security .grid div {
   background: white;
-  padding: 25px;
+  padding: 22px;
   border-radius: 14px;
   box-shadow: 0 10px 25px rgba(0,0,0,.06);
-  font-weight: 500;
 }
 
+/* ========== HOW / ELIGIBILITY ========== */
+.how ol {
+  max-width: 600px;
+  margin: auto;
+}
+
+.how li {
+  margin: 12px 0;
+}
+
+.eligibility ul {
+  max-width: 600px;
+  margin: auto;
+  list-style: none;
+  padding: 0;
+}
+
+.eligibility li {
+  background: #f1f5f9;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 10px;
+}
+
+/* ========== CALCULATOR ========== */
 .calculator {
   background: white;
   border-radius: 20px;
@@ -116,7 +186,6 @@ input, select {
   padding: 14px;
   border-radius: 10px;
   border: 1px solid #d1d5db;
-  font-size: 15px;
 }
 
 button[type="submit"] {
@@ -129,6 +198,7 @@ button[type="submit"] {
   cursor: pointer;
 }
 
+/* ========== SUMMARY ========== */
 .summary {
   margin: 30px 0;
   display: grid;
@@ -151,11 +221,24 @@ button[type="submit"] {
   margin-top: 8px;
 }
 
+/* ========== TABLE ========== */
+.table-wrapper {
+  overflow-x: auto;
+  margin-top: 15px;
+}
+
+.table-wrapper::before {
+  content: "Swipe to view →";
+  font-size: 12px;
+  color: #6b7280;
+  display: block;
+  margin-bottom: 6px;
+}
+
 table {
   width: 100%;
+  min-width: 700px;
   border-collapse: collapse;
-  margin-top: 20px;
-  font-size: 14px;
 }
 
 th {
@@ -166,53 +249,130 @@ th {
 th, td {
   padding: 10px;
   border: 1px solid #e5e7eb;
+  text-align: center;
 }
 
-.hidden {
-  display: none;
+/* ========== COMPARISON ========== */
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
+.compare-table th {
+  background: #2563eb;
+  color: white;
+}
+
+.compare-table th, .compare-table td {
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+/* ========== SUPPORT / FAQ ========== */
+.support, .faq {
+  text-align: center;
+}
+
+.faq p {
+  max-width: 700px;
+  margin: 12px auto;
+}
+
+/* ========== FOOTER ========== */
 footer {
   background: #020617;
   color: #9ca3af;
-  padding: 25px;
   text-align: center;
-  margin-top: 60px;
+  padding: 25px;
 }
 
-footer .disclaimer {
+footer a {
+  color: #9ca3af;
+  margin: 0 5px;
+}
+
+.disclaimer {
   font-size: 12px;
   margin-top: 10px;
 }
 
-/* Responsive Table */
-.table-wrapper {
-  width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  border-radius: 12px;
-  margin-top: 20px;
+/* ========== UTIL ========== */
+.hidden {
+  display: none;
 }
 
-/* Improve mobile readability */
+/* ========== MOBILE ========== */
 @media (max-width: 768px) {
-
-  table {
-    min-width: 700px;
-    font-size: 13px;
+  .hero h1 {
+    font-size: 28px;
   }
 
-  th, td {
-    padding: 8px;
-    white-space: nowrap;
+  .calculator form {
+    grid-template-columns: 1fr;
   }
 
-  .table-wrapper::-webkit-scrollbar {
-    height: 6px;
-  }
-
-  .table-wrapper::-webkit-scrollbar-thumb {
-    background: #2563eb;
-    border-radius: 10px;
+  .summary {
+    grid-template-columns: 1fr;
   }
 }
+
+.user-summary {
+  background: #f8fafc;
+  border-radius: 16px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: inset 0 0 0 1px #e5e7eb;
+}
+
+.user-summary h3 {
+  margin-bottom: 10px;
+  color: #2563eb;
+}
+
+.user-summary p {
+  margin: 6px 0;
+  font-size: 14px;
+}
+
+.consent {
+  font-size: 13px;
+  display: block;
+  margin-top: 10px;
+}
+
+.consent a {
+  color: #2563eb;
+}
+
+.application-details {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 30px;
+  margin: 30px 0;
+  box-shadow: 0 20px 40px rgba(0,0,0,.08);
+}
+
+.application-details h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #2563eb;
+}
+
+.app-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+}
+
+.app-grid div {
+  background: #f8fafc;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+.status {
+  color: #16a34a;
+  font-weight: 700;
+}
+

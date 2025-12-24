@@ -3,107 +3,228 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Instant Pre-Approved Loan @ 1.5%</title>
+<title>Pre-Approved Loan @ 1.5%</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<!-- ================= HEADER ================= -->
 <header>
   <div class="nav">
     <h2>Loanify</h2>
     <nav>
       <a href="#features">Features</a>
-      <a href="#how">How it works</a>
+      <a href="#eligibility">Eligibility</a>
       <a href="#calculator">Calculator</a>
       <a href="#faq">FAQ</a>
     </nav>
   </div>
 </header>
 
+<!-- ================= HERO ================= -->
 <section class="hero">
   <h1>Pre-Approved Loan at <span>1.5% Monthly</span></h1>
-  <p>Instant approval • No paperwork • Transparent EMI</p>
-  <button onclick="scrollToCalc()">Check Your EMI</button>
+  <p>Fast approval • Transparent pricing • Flexible EMI</p>
+  <button onclick="scrollToCalc()">Calculate EMI</button>
 </section>
 
+<!-- ================= HIGHLIGHTS ================= -->
+<section class="highlights">
+  <div class="highlight-card"><h3>$500 – $50,000</h3><p>Loan Amount</p></div>
+  <div class="highlight-card"><h3>1.5% Monthly</h3><p>Interest Rate</p></div>
+  <div class="highlight-card"><h3>3 – 24 Months</h3><p>Flexible Tenure</p></div>
+  <div class="highlight-card"><h3>No Collateral</h3><p>Unsecured Loan</p></div>
+</section>
+
+<!-- ================= TRUST ================= -->
 <section class="trust">
-  <div>🔒 Secure</div>
-  <div>⚡ Instant Approval</div>
-  <div>🏦 RBI-Compliant*</div>
+  <div>🔒 SSL Secured</div>
+  <div>⚡ Instant Decision</div>
   <div>📊 Transparent EMI</div>
+  <div>🛡️ Data Privacy</div>
 </section>
 
+<!-- ================= FEATURES ================= -->
 <section id="features" class="features">
-  <h2>Why Choose Us</h2>
+  <h2>Why Choose Loanify</h2>
   <div class="grid">
-    <div>✔ Low Monthly Interest</div>
-    <div>✔ Fixed & Reducing EMI</div>
+    <div>✔ Fixed & Reducing EMI Options</div>
     <div>✔ No Hidden Charges</div>
-    <div>✔ Flexible Tenure</div>
+    <div>✔ Early Repayment Allowed</div>
+    <div>✔ Secure & Encrypted Platform</div>
   </div>
 </section>
 
-<section id="how" class="how">
+<!-- ================= HOW IT WORKS ================= -->
+<section class="how">
   <h2>How It Works</h2>
   <ol>
-    <li>Enter loan details</li>
-    <li>Choose EMI type</li>
-    <li>View instant approval</li>
-    <li>Check EMI schedule</li>
+    <li>Enter your loan amount & tenure</li>
+    <li>Select EMI type (Fixed or Reducing)</li>
+    <li>View instant loan summary</li>
+    <li>Check complete EMI schedule</li>
   </ol>
 </section>
 
+<!-- ================= ELIGIBILITY ================= -->
+<section id="eligibility" class="eligibility">
+  <h2>Eligibility Criteria</h2>
+  <ul>
+    <li>Age: 21 – 60 years</li>
+    <li>Minimum monthly income required</li>
+    <li>Valid government-issued ID</li>
+    <li>Resident of supported country</li>
+    <li>Positive credit behavior preferred</li>
+  </ul>
+</section>
+
+<!-- ================= CALCULATOR ================= -->
 <section id="calculator" class="calculator">
   <h2>Loan Calculator</h2>
 
   <form id="loanForm">
-    <input type="number" id="amount" placeholder="Loan Amount $" required>
+
+    <!-- USER DETAILS -->
+    <input type="text" id="name" placeholder="Full Name" required>
+    <input type="email" id="email" placeholder="Email Address" required>
+    <input type="tel" id="mobile" placeholder="Mobile Number" required>
+
+    <select id="employment" required>
+        <option value="">Employment Type</option>
+        <option>Salaried</option>
+        <option>Self Employed</option>
+        <option>Business Owner</option>
+        <option>Freelancer</option>
+    </select>
+
+    <input type="number" id="income" placeholder="Monthly Income ($)" required>
+    <input type="text" id="city" placeholder="City" required>
+
+    <!-- LOAN DETAILS -->
+    <input type="number" id="amount" placeholder="Loan Amount ($)" required>
     <input type="number" id="tenure" placeholder="Tenure (Months)" required>
 
     <select id="type">
-      <option value="reducing">Reducing Balance EMI</option>
-      <option value="flat">Fixed EMI</option>
+        <option value="reducing">Reducing Balance EMI</option>
+        <option value="flat">Fixed EMI</option>
     </select>
 
-    <button type="submit">Calculate EMI</button>
-  </form>
+    <label class="consent">
+        <input type="checkbox" required>
+        I agree to the <a href="#">Terms</a> & <a href="#">Privacy Policy</a>
+    </label>
 
-  <div id="result" class="hidden">
-    <div class="summary">
-      <div>EMI<br><span id="emi"></span></div>
-      <div>Total Interest<br><span id="interest"></span></div>
-      <div>Total Payable<br><span id="total"></span></div>
+    <button type="submit">Check Loan Details</button>
+
+    </form>
+
+
+    <div id="applicationDetails" class="application-details hidden">
+        <h2>Loan Application Summary</h2>
+
+        <div class="app-grid">
+            <div><b>Name:</b> <span id="a_name"></span></div>
+            <div><b>Email:</b> <span id="a_email"></span></div>
+            <div><b>Mobile:</b> <span id="a_mobile"></span></div>
+            <div><b>Employment:</b> <span id="a_employment"></span></div>
+            <div><b>Monthly Income:</b> <span id="a_income"></span></div>
+            <div><b>City:</b> <span id="a_city"></span></div>
+
+            <div><b>Loan Amount:</b> <span id="a_amount"></span></div>
+            <div><b>Tenure:</b> <span id="a_tenure"></span></div>
+            <div><b>Interest Rate:</b> 1.5% Monthly</div>
+            <div><b>EMI Type:</b> <span id="a_type"></span></div>
+            <div><b>Application Status:</b> <span class="status">Pre-Approved</span></div>
+        </div>
     </div>
 
-    <div class="table-wrapper">
-        <table>
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>Date</th>
-                <th>EMI</th>
-                <th>Principal</th>
-                <th>Interest</th>
-                <th>Balance</th>
-            </tr>
-            </thead>
-            <tbody id="schedule"></tbody>
-        </table>
-    </div>
+
+</section>
+
+<!-- ================= EMI COMPARISON ================= -->
+<section class="comparison">
+  <h2>EMI Type Comparison</h2>
+  <table class="compare-table">
+    <tr>
+      <th>Feature</th>
+      <th>Fixed EMI</th>
+      <th>Reducing EMI</th>
+    </tr>
+    <tr>
+      <td>Interest Calculation</td>
+      <td>On full loan amount</td>
+      <td>On remaining balance</td>
+    </tr>
+    <tr>
+      <td>Total Interest</td>
+      <td>Higher</td>
+      <td>Lower</td>
+    </tr>
+    <tr>
+      <td>Best For</td>
+      <td>Short-term loans</td>
+      <td>Long-term savings</td>
+    </tr>
+  </table>
+</section>
+
+<!-- ================= CHARGES ================= -->
+<section class="charges">
+  <h2>Charges & Fees</h2>
+  <div class="grid">
+    <div><b>Processing Fee:</b> Up to 2%</div>
+    <div><b>Late Payment Fee:</b> $10 + applicable tax</div>
+    <div><b>Prepayment:</b> Allowed after 3 EMIs</div>
+    <div><b>Taxes:</b> As per local regulations</div>
   </div>
 </section>
 
-<section id="faq" class="faq">
-  <h2>Frequently Asked Questions</h2>
-  <p><b>Is 1.5% monthly?</b><br>Yes, interest is charged monthly.</p>
-  <p><b>Flat vs Reducing?</b><br>Reducing EMI saves interest.</p>
-  <p><b>Is approval guaranteed?</b><br>Subject to verification.</p>
+<!-- ================= TRANSPARENCY ================= -->
+<section class="transparency">
+  <h2>Interest Transparency</h2>
+  <p>
+    A monthly interest rate of <b>1.5%</b> corresponds to an approximate
+    annualized rate of <b>18% – 20%</b>, depending on tenure and EMI structure.
+  </p>
 </section>
 
+<!-- ================= SECURITY ================= -->
+<section class="security">
+  <h2>Your Data Is Safe</h2>
+  <div class="grid">
+    <div>🔐 SSL Encrypted Platform</div>
+    <div>📜 Privacy-First Data Policy</div>
+    <div>🏦 Regulatory Guidelines Followed</div>
+    <div>🛡️ No Data Sharing Without Consent</div>
+  </div>
+</section>
+
+<!-- ================= SUPPORT ================= -->
+<section class="support">
+  <h2>Customer Support</h2>
+  <p>Email: support@loanify.com</p>
+  <p>Phone: +1 (000) 000-0000</p>
+  <p>Mon–Sat | 10:00 AM – 6:00 PM</p>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section id="faq" class="faq">
+  <h2>Frequently Asked Questions</h2>
+  <p><b>Is 1.5% interest monthly?</b><br>Yes, interest is calculated monthly.</p>
+  <p><b>Which EMI option is better?</b><br>Reducing EMI usually costs less.</p>
+  <p><b>Is loan approval guaranteed?</b><br>No, approval is subject to verification.</p>
+</section>
+
+<!-- ================= FOOTER ================= -->
 <footer>
-  <p>© 2025 Loanify. All Rights Reserved.</p>
+  <p>© 2025 Loanify Financial Services</p>
+  <p>
+    <a href="#">Privacy Policy</a> |
+    <a href="#">Terms & Conditions</a> |
+    <a href="#">Support</a>
+  </p>
   <p class="disclaimer">
-    * Loan approval subject to verification. Interest rate is monthly.
+    Loan approval is subject to verification. This website is for informational purposes only.
   </p>
 </footer>
 

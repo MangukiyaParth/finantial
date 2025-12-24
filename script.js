@@ -1,27 +1,87 @@
+/* ================= SCROLL ================= */
 function scrollToCalc() {
-  document.getElementById("calculator").scrollIntoView({ behavior: "smooth" });
+  document.getElementById("calculator").scrollIntoView({
+    behavior: "smooth"
+  });
 }
 
+/* ================= ELEMENTS ================= */
+// Result & Table
+const result = document.getElementById("result");
+const schedule = document.getElementById("schedule");
+
+// Summary
 const emiSpan = document.getElementById("emi");
 const interestSpan = document.getElementById("interest");
 const totalSpan = document.getElementById("total");
-const schedule = document.getElementById("schedule");
-const result = document.getElementById("result");
 
+// Application box
+const applicationBox = document.getElementById("applicationDetails");
+
+// Applicant fields
+const aName = document.getElementById("a_name");
+const aEmail = document.getElementById("a_email");
+const aMobile = document.getElementById("a_mobile");
+const aEmployment = document.getElementById("a_employment");
+const aIncome = document.getElementById("a_income");
+const aCity = document.getElementById("a_city");
+const aAmount = document.getElementById("a_amount");
+const aTenure = document.getElementById("a_tenure");
+const aType = document.getElementById("a_type");
+
+/* ================= CURRENCY ================= */
+const CURRENCY = "$";
+function money(v) {
+  return CURRENCY + v.toLocaleString(undefined, {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+}
+
+/* ================= FORM SUBMIT ================= */
 document.getElementById("loanForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
-  const P = Number(document.getElementById("amount").value);
-  const N = Number(document.getElementById("tenure").value);
-  const R = 0.015;
-  const type = document.getElementById("type").value;
+  /* ---------- USER INPUT ---------- */
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const mobile = document.getElementById("mobile").value;
+  const employment = document.getElementById("employment").value;
+  const income = Number(document.getElementById("income").value);
+  const city = document.getElementById("city").value;
 
-  let emi = 0, totalInterest = 0, balance = P;
+  const P = Number(document.getElementById("amount").value); // Loan
+  const N = Number(document.getElementById("tenure").value); // Months
+  const type = document.getElementById("type").value;
+  const R = 0.015; // 1.5% monthly
+
+  /* ---------- SHOW APPLICATION DETAILS ---------- */
+  document.getElementById("loanForm").style.display = "none";
+  applicationBox.classList.remove("hidden");
+
+  aName.innerText = name;
+  aEmail.innerText = email;
+  aMobile.innerText = mobile;
+  aEmployment.innerText = employment;
+  aIncome.innerText = money(income);
+  aCity.innerText = city;
+  aAmount.innerText = money(P);
+  aTenure.innerText = N + " Months";
+  aType.innerText = type === "reducing"
+    ? "Reducing Balance EMI"
+    : "Fixed EMI";
+
+  /* ---------- EMI CALCULATION ---------- */
+  let emi = 0;
+  let totalInterest = 0;
+  let balance = P;
   let rows = "";
-  const start = new Date();
+  const startDate = new Date();
 
   if (type === "reducing") {
-    emi = (P * R * Math.pow(1 + R, N)) / (Math.pow(1 + R, N) - 1);
+    emi =
+      (P * R * Math.pow(1 + R, N)) /
+      (Math.pow(1 + R, N) - 1);
 
     for (let i = 1; i <= N; i++) {
       const interest = balance * R;
@@ -29,17 +89,17 @@ document.getElementById("loanForm").addEventListener("submit", function (e) {
       balance -= principal;
       totalInterest += interest;
 
-      const d = new Date(start);
-      d.setMonth(d.getMonth() + i);
+      const due = new Date(startDate);
+      due.setMonth(due.getMonth() + i);
 
       rows += `
         <tr>
           <td>${i}</td>
-          <td>${d.toDateString()}</td>
-          <td>$${emi.toFixed(2)}</td>
-          <td>$${principal.toFixed(2)}</td>
-          <td>$${interest.toFixed(2)}</td>
-          <td>$${Math.max(balance, 0).toFixed(2)}</td>
+          <td>${due.toDateString()}</td>
+          <td>${money(emi)}</td>
+          <td>${money(principal)}</td>
+          <td>${money(interest)}</td>
+          <td>${money(Math.max(balance, 0))}</td>
         </tr>`;
     }
   } else {
@@ -51,24 +111,27 @@ document.getElementById("loanForm").addEventListener("submit", function (e) {
 
     for (let i = 1; i <= N; i++) {
       balance -= principal;
-      const d = new Date(start);
-      d.setMonth(d.getMonth() + i);
+
+      const due = new Date(startDate);
+      due.setMonth(due.getMonth() + i);
 
       rows += `
         <tr>
           <td>${i}</td>
-          <td>${d.toDateString()}</td>
-          <td>$${emi.toFixed(2)}</td>
-          <td>$${principal.toFixed(2)}</td>
-          <td>$${interest.toFixed(2)}</td>
-          <td>$${Math.max(balance, 0).toFixed(2)}</td>
+          <td>${due.toDateString()}</td>
+          <td>${money(emi)}</td>
+          <td>${money(principal)}</td>
+          <td>${money(interest)}</td>
+          <td>${money(Math.max(balance, 0))}</td>
         </tr>`;
     }
   }
 
-  emiSpan.innerText = "$" + emi.toFixed(2);
-  interestSpan.innerText = "$" + totalInterest.toFixed(2);
-  totalSpan.innerText = "$" + (P + totalInterest).toFixed(2);
+  /* ---------- DISPLAY RESULTS ---------- */
+  emiSpan.innerText = money(emi);
+  interestSpan.innerText = money(totalInterest);
+  totalSpan.innerText = money(P + totalInterest);
+
   schedule.innerHTML = rows;
   result.classList.remove("hidden");
 });
