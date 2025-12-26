@@ -5,6 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pre-Approved Loan @ 1.5%</title>
 <link rel="stylesheet" href="style.css">
+<script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js" crossorigin="anonymous"></script>
+<script>
+    window.googletag = window.googletag || { cmd: [] };
+    let displaySlots;
+    googletag.cmd.push(() => {
+        // Define an ad slot for div with id "banner-ad".
+        displaySlots = googletag
+        .defineSlot("/23324356353/t1", [300, 250], "banner-ad")
+        .addService(googletag.pubads());
+        
+        googletag.pubads().collapseEmptyDivs();
+        googletag.pubads().enableLazyLoad({
+            fetchMarginPercent: 100,
+            renderMarginPercent: 50,
+            mobileScaling: 2.0
+        });
+        // Enable the PubAdsService.
+        googletag.enableServices();
+    });
+
+</script>
 </head>
 <body>
 
@@ -31,6 +52,12 @@
 <!-- ================= HIGHLIGHTS ================= -->
 <section class="highlights">
   <div class="highlight-card"><h3>$500 – $50,000</h3><p>Loan Amount</p></div>
+  <div id="banner-ad" style="height: auto; text-align: center; margin: 20px 0"></div>
+  <script>
+      googletag.cmd.push(() => {
+          googletag.display("banner-ad");
+      });
+  </script>
   <div class="highlight-card"><h3>1.5% Monthly</h3><p>Interest Rate</p></div>
   <div class="highlight-card"><h3>3 – 24 Months</h3><p>Flexible Tenure</p></div>
   <div class="highlight-card"><h3>No Collateral</h3><p>Unsecured Loan</p></div>

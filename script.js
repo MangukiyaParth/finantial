@@ -42,7 +42,68 @@ function money(v) {
 document.getElementById("loanForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
-  /* ---------- USER INPUT ---------- */
+  googletag.cmd.push(function() {
+    try {
+        // Destroy existing slot if any
+        if (rewardedSlot) {
+            googletag.destroySlots([rewardedSlot]);
+            rewardedSlot = null;
+        }
+        
+        rewardedSlot = googletag.defineOutOfPageSlot("/23324356353/t3", googletag.enums.OutOfPageFormat.REWARDED);
+        if (rewardedSlot) {
+            rewardedSlot.addService(googletag.pubads());
+            googletag.pubads().addEventListener('rewardedSlotReady', (event) => {
+                console.log('Rewarded ad ready:', event.slot.getSlotId().getId());
+                if (event.slot === rewardedSlot) {
+                    event.makeRewardedVisible();
+                }
+            });
+            
+            googletag.pubads().addEventListener('rewardedSlotClosed', (event) => {
+                console.log('Rewarded ad closed:', event.slot.getSlotId().getId());
+                if (event.slot === rewardedSlot) {
+                    googletag.destroySlots([rewardedSlot]);
+                    rewardedSlot = null;
+                    // Navigate to product page after ad is closed
+                    if (pendingProductUrl) {
+                        loadData();
+                        pendingProductUrl = null;
+                    }
+                }
+            });
+            
+            googletag.pubads().addEventListener('rewardedSlotGranted', (event) => {
+                console.log('Reward granted:', event.payload);
+                // Navigate to product page after reward is granted
+                if (pendingProductUrl) {
+                    loadData();
+                    pendingProductUrl = null;
+                }
+            });
+        
+            googletag.pubads().addEventListener('slotRenderEnded', (event) => {
+                if (event.slot === rewardedSlot) {
+                    loadData();
+                    pendingProductUrl = null;
+                }
+            });
+            
+            googletag.display(rewardedSlot);
+        }
+    } catch (error) {
+        console.error('Rewarded ad error:', error);
+        // If ad fails, navigate to product page anyway
+        if (pendingProductUrl) {
+            loadData();
+            pendingProductUrl = null;
+        }
+    }
+  });
+});
+
+function loadData(){
+    /* ---------- USER INPUT ---------- */
   const name = document.getElementById("name").value;
   const email = document.getElementById("email").value;
   const mobile = document.getElementById("mobile").value;
@@ -128,10 +189,10 @@ document.getElementById("loanForm").addEventListener("submit", function (e) {
   }
 
   /* ---------- DISPLAY RESULTS ---------- */
-//   emiSpan.innerText = money(emi);
-//   interestSpan.innerText = money(totalInterest);
-//   totalSpan.innerText = money(P + totalInterest);
+    //   emiSpan.innerText = money(emi);
+    //   interestSpan.innerText = money(totalInterest);
+    //   totalSpan.innerText = money(P + totalInterest);
 
-  schedule.innerHTML = rows;
-//   result.classList.remove("hidden");
-});
+    schedule.innerHTML = rows;
+    //   result.classList.remove("hidden");
+}
